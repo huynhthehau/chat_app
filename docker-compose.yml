@@ -1,14 +1,40 @@
-version: "3"
+version: "3.4"
+
+networks:
+  dev:
+    driver: bridge
+
 services:
-  postgres:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: WebAppChat2
-      POSTGRES_USER: hau
-      POSTGRES_PASSWORD: 1234
+  app:
+    image: "web_dotnet6"
+    depends_on:
+      - "db"
+    container_name: app
     ports:
-      - "5432:5432"
+      - "5000:80"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=User ID=hau;Password=1234;Server=db;Port=5432;Database=app_chat;IntegratedSecurity=true;Pooling=true;
+      # - ASPNETCORE_URLS=http://+80
+    networks:
+      - dev
+
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      - POSTGRES_USER=hau
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=app_chat
+    ports:
+      - "5433:5432"
+    restart: always
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - app_data:/var/lib/postgresql/data
+    networks:
+      - dev
+
 volumes:
-  postgres-data:
+  app_data:

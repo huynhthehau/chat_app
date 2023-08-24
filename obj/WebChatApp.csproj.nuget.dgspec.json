@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "A:\\learn-c-sharp\\WebChatApp\\WebChatApp.csproj": {}
+    "A:\\chat_app\\WebChatApp.csproj": {}
   },
   "projects": {
-    "A:\\learn-c-sharp\\WebChatApp\\WebChatApp.csproj": {
+    "A:\\chat_app\\WebChatApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "A:\\learn-c-sharp\\WebChatApp\\WebChatApp.csproj",
+        "projectUniqueName": "A:\\chat_app\\WebChatApp.csproj",
         "projectName": "WebChatApp",
-        "projectPath": "A:\\learn-c-sharp\\WebChatApp\\WebChatApp.csproj",
+        "projectPath": "A:\\chat_app\\WebChatApp.csproj",
         "packagesPath": "C:\\Users\\theha\\.nuget\\packages\\",
-        "outputPath": "A:\\learn-c-sharp\\WebChatApp\\obj\\",
+        "outputPath": "A:\\chat_app\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\theha\\AppData\\Roaming\\NuGet\\NuGet.Config",
