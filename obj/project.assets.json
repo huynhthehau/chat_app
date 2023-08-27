@@ -12105,26 +12105,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\theha\\.nuget\\packages\\": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "A:\\chat_app\\WebChatApp.csproj",
+      "projectUniqueName": "/app/WebChatApp.csproj",
       "projectName": "WebChatApp",
-      "projectPath": "A:\\chat_app\\WebChatApp.csproj",
-      "packagesPath": "C:\\Users\\theha\\.nuget\\packages\\",
-      "outputPath": "A:\\chat_app\\obj\\",
+      "projectPath": "/app/WebChatApp.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\theha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -12215,7 +12213,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.411\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.413/RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -38,5 +38,9 @@
 		<Folder Include="wwwroot\lib\jquery\dist\" />
 		<Folder Include="wwwroot\uploads\" />
 	</ItemGroup>
-
+	<ItemGroup>
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 </Project>

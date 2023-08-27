@@ -12,7 +12,7 @@ namespace WebChatApp.Data
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{enviromentName}.json")
+                // .AddJsonFile($"appsettings.{enviromentName}.json")
                 .Build();
 
             var builder = new DbContextOptionsBuilder<ManageAppDbContext>();

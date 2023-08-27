@@ -20,7 +20,7 @@ services:
       # - ASPNETCORE_URLS=http://+80
     networks:
       - dev
-
+      
   db:
     image: postgres:latest
     container_name: db
