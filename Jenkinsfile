@@ -74,7 +74,7 @@ pipeline{
                     && docker tag web_dotnet6 ${DOCKER_HUB}/web_dotnet6:${BUILD_NUMBER} \
                     && echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin \
                     && docker push ${DOCKER_HUB}/web_dotnet6:${BUILD_NUMBER} \
-                    && docker rmi ${DOCKER_HUB}/web_dotnet6:${BUILD_NUMBER}"
+                    && docker rmi ${DOCKER_HUB}/web_dotnet6:${BUILD_NUMBER} "
                 }
             }
         }
@@ -85,8 +85,7 @@ pipeline{
                    sh "cd $PATH_PROJECT \
                     && docker rm -f ${NAME_BACKEND} | true \
                     && docker pull ${DOCKER_HUB}/web_dotnet6:${BUILD_NUMBER} \
-                    && docker run --name=${NAME_BACKEND} -dp 8081:80 ${DOCKER_HUB}/web_dotnet6:${BUILD_NUMBER}
-                    "
+                    && docker run --name=${NAME_BACKEND} -dp 8081:80 ${DOCKER_HUB}/web_dotnet6:${BUILD_NUMBER}"
                 }
             }
         }
