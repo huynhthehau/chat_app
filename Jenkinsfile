@@ -4,11 +4,12 @@ pipeline{
         PATH_PROJECT = '/var/jenkins_home/workspace/gitlab-dotnet-postgresql'
     }
     stages{
-        stage('Check source'){
-            steps{
-                // sh 'cp -r . $PATH_PROJECT'
-            }
-        }
+        // stage('Check source'){
+        //     steps{
+        //         // sh 'cp -r . $PATH_PROJECT'
+
+        //     }
+        // }
         stage('test with dotnet'){
             steps{
                 sh "cd $PATH_PROJECT \
