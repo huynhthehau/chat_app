@@ -71,13 +71,11 @@ pipeline{
                 script {
                     env.IMAGE_TAG = BUILDID
                     sh "cd $PATH_PROJECT \
-                    && IMAGE_TAG=${IMAGE_TAG} \
-                    && NAME_BACKEND=${NAME_BACKEND} \
-                    && docker compose build \
-                    && docker tag ${NAME_BACKEND}:$BUILDID ${DOCKER_HUB}/${NAME_BACKEND}:$BUILDID \
+                    && docker compose build --parallel\
+                    && docker tag web_dotnet6:$BUILDID ${DOCKER_HUB}/web_dotnet6:$BUILDID \
                     && echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin \
-                    && docker push ${DOCKER_HUB}/${NAME_BACKEND}:$BUILDID \
-                    && docker rmi ${DOCKER_HUB}/${NAME_BACKEND}:$BUILDID"
+                    && docker push ${DOCKER_HUB}/web_dotnet6:$BUILDID \
+                    && docker rmi ${DOCKER_HUB}/web_dotnet6:$BUILDID"
                 }
             }
         }
