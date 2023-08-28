@@ -76,7 +76,6 @@ pipeline{
                     && NAME_BACKEND=${NAME_BACKEND} \
                     && docker-compose build --parallel \
                     && docker tag ${NAME_BACKEND}:$DOCKER_TAG ${DOCKER_HUB}/${NAME_BACKEND}:$DOCKER_TAG \
-                    && docker tag ${NAME_FRONTEND}:$DOCKER_TAG ${DOCKER_HUB}/${NAME_FRONTEND}:$DOCKER_TAG \
                     && echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin \
                     && docker push ${DOCKER_HUB}/${NAME_BACKEND}:$DOCKER_TAG \
                     && docker rmi ${DOCKER_HUB}/${NAME_BACKEND}:$DOCKER_TAG"
