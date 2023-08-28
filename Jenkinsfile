@@ -2,8 +2,8 @@ pipeline{
     agent any
     environment{
         PATH_PROJECT = '/var/jenkins_home/workspace/gitlab-dotnet-postgresql'
-        SONAR_PROJECT_KEY = 'haudtr_chat_app_AYo6AazDEC3terW5sOBA'
-        SONAR_TOKEN =  credentials("token-sonarqube")
+        SONAR_PROJECT_KEY = 'haudtr_chat_app_AYo6NCz_wGp5cFdDrzWG'
+        SONAR_TOKEN =  credentials("sonarqube-10h30")
 
         MIGRATION_NAME = sh(script: 'echo $(date + %Y%m%d%h%m%s)',returnStdout:true).trim()
     }
