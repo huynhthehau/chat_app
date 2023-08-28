@@ -11,7 +11,6 @@ pipeline{
         DOCKER_HUB = 'haudtr285'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         NAME_BACKEND = 'chat_app'
-        DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
     }
     stages{
         // stage('Check source'){
@@ -70,15 +69,15 @@ pipeline{
         stage('Build and push images') {
             steps {
                 script {
-                    env.IMAGE_TAG = DOCKER_TAG
+                    env.IMAGE_TAG = BUILDID
                     sh "cd $PATH_PROJECT \
                     && IMAGE_TAG=${IMAGE_TAG} \
                     && NAME_BACKEND=${NAME_BACKEND} \
                     && docker compose build \
-                    && docker tag ${NAME_BACKEND}:$DOCKER_TAG ${DOCKER_HUB}/${NAME_BACKEND}:$DOCKER_TAG \
+                    && docker tag ${NAME_BACKEND}:$BUILDID ${DOCKER_HUB}/${NAME_BACKEND}:$BUILDID \
                     && echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin \
-                    && docker push ${DOCKER_HUB}/${NAME_BACKEND}:$DOCKER_TAG \
-                    && docker rmi ${DOCKER_HUB}/${NAME_BACKEND}:$DOCKER_TAG"
+                    && docker push ${DOCKER_HUB}/${NAME_BACKEND}:$BUILDID \
+                    && docker rmi ${DOCKER_HUB}/${NAME_BACKEND}:$BUILDID"
                 }
             }
         }
