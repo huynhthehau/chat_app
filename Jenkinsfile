@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Check source'){
             steps{
-                sh 'cp -r . $PATH_PROJECT'
+                // sh 'cp -r . $PATH_PROJECT'
             }
         }
         stage('test with dotnet'){
