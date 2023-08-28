@@ -23,7 +23,7 @@ pipeline{
         }
         stage("test with sonarqube"){
             steps{
-                withSonarQubeEnv("Sonarqube server connection"){
+                withSonarQubeEnv("SonarQube conenction"){
                     sh "cd $PATH_PROJECT \
                     && docker run -rm -e SONAR_HOST_URL=${env.SONAR_HOST_URL}  \
                     -e SONAR_SCANNER_OPTS='-Dsonar.projectKey=$SONAR_PROJECT_KEY' \
