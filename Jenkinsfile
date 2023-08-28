@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('Check source'){
             steps{
-                sh 'whoam1 && pwd'
+                sh 'whoami && pwd'
             }
         }
     }
