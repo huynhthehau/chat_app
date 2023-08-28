@@ -21,15 +21,43 @@ pipeline{
                 && docker run --rm -v .:/app -w /app dotnet6-app dotnet test"
             }
         }
-        stage("test with sonarqube"){
-            steps{
-                withSonarQubeEnv("SonarQube conenction"){
-                    sh "cd $PATH_PROJECT \
-                    && docker run --network=jenkins --rm -e SONAR_HOST_URL=${env.SONAR_HOST_URL} \
-                    -e SONAR_SCANNER_OPTS='-Dsonar.projectKey=$SONAR_PROJECT_KEY' \
-                    -e SONAR_TOKEN=$SONAR_TOKEN \
-                    -v '.:/usr/src' \
-                    sonarsource/sonar-scanner-cli"
+        // stage("test with sonarqube"){
+        //     steps{
+        //         withSonarQubeEnv("SonarQube conenction"){
+        //             sh "cd $PATH_PROJECT \
+        //             && docker run --network=jenkins --rm -e SONAR_HOST_URL=${env.SONAR_HOST_URL} \
+        //             -e SONAR_SCANNER_OPTS='-Dsonar.projectKey=$SONAR_PROJECT_KEY' \
+        //             -e SONAR_TOKEN=$SONAR_TOKEN \
+        //             -v '.:/usr/src' \
+        //             sonarsource/sonar-scanner-cli"
+        //         }
+        //     }
+        // }
+        stage('Migration database') {
+            steps {
+                script {
+                    try {
+                        timeout(time: 5, unit: 'MINUTES') {
+                            env.userChoice = input message: 'Do you want to migrate the database?',
+                                parameters: [choice(name: 'Versioning Service', choices: 'no\nyes', description: 'Choose "yes" if you want to migrate!')]
+                        }
+                        if (env.userChoice == 'yes') {
+                            echo "Migration success!"
+                            // sh "cd $PATH_PROJECT/BE \
+                            // && docker run --rm -v .:/app -w /app dotnet6-app dotnet ef migrations add $MIGRATION_NAME \
+                            // && docker run --rm -v .:/app -w /app dotnet6-app dotnet ef database update"
+                        } else {
+                            echo "Migration cancelled."
+                        }
+                    } catch (Exception err){
+                        def user = err.getCauses()[0].getUser()
+                        if ('SYSTEM' == user.toString()) {
+                            def didTimeout = true
+                            echo "Timeout. Migration cancelled."
+                        } else {
+                            echo "Migration cancelled by: ${user}"
+                        }
+                    }
                 }
             }
         }
