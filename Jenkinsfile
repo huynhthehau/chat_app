@@ -69,13 +69,12 @@ pipeline{
         stage('Build and push images') {
             steps {
                 script {
-                    env.IMAGE_TAG = BUILDID
                     sh "cd $PATH_PROJECT \
                     && docker compose build --parallel\
-                    && docker tag web_dotnet6:$BUILDID ${DOCKER_HUB}/web_dotnet6:$BUILDID \
+                    && docker tag web_dotnet6:${BUILD_NUMBER} ${DOCKER_HUB}/web_dotnet6:${BUILD_NUMBER} \
                     && echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin \
-                    && docker push ${DOCKER_HUB}/web_dotnet6:$BUILDID \
-                    && docker rmi ${DOCKER_HUB}/web_dotnet6:$BUILDID"
+                    && docker push ${DOCKER_HUB}/web_dotnet6:${BUILD_NUMBER} \
+                    && docker rmi ${DOCKER_HUB}/web_dotnet6:${BUILD_NUMBER}"
                 }
             }
         }
