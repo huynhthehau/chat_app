@@ -25,8 +25,8 @@ pipeline{
             steps{
                 withSonarQubeEnv("Sonarqube server connection"){
                     sh "cd $PATH_PROJECT \
-                    && docker run -rm -e SONAR_HOST_URL+=${env.SONAR_HOST_URL} \ 
-                    -e SONAR_SCANNER_OPTS='-Dsonar.projectKey=$SONAR_PROJECT_KEY \
+                    && docker run -rm -e SONAR_HOST_URL=${env.SONAR_HOST_URL} \ 
+                    -e SONAR_SCANNER_OPTS='-Dsonar.projectKey=$SONAR_PROJECT_KEY' \
                     -e SONAR_TOKEN=$SONAR_TOKEN \
                     -v '.:/usr/src' \
                     sonarsource/sonar-scanner-cli
